@@ -13,6 +13,7 @@
 		CE2A67531FA26DA60084CF99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE2A67521FA26DA60084CF99 /* Assets.xcassets */; };
 		CE2A67561FA26DA60084CF99 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE2A67541FA26DA60084CF99 /* LaunchScreen.storyboard */; };
 		CE2A67611FA2700D0084CF99 /* Calculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A67601FA2700D0084CF99 /* Calculator.swift */; };
+		CE9065381FA2747200870F44 /* CalculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9065371FA2747200870F44 /* CalculatorViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		CE2A67551FA26DA60084CF99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE2A67571FA26DA60084CF99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE2A67601FA2700D0084CF99 /* Calculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculator.swift; sourceTree = "<group>"; };
+		CE9065371FA2747200870F44 /* CalculatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				CE2A674D1FA26DA60084CF99 /* ViewController.swift */,
+				CE9065371FA2747200870F44 /* CalculatorViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -165,6 +168,7 @@
 			files = (
 				CE2A674E1FA26DA60084CF99 /* ViewController.swift in Sources */,
 				CE2A674C1FA26DA60084CF99 /* AppDelegate.swift in Sources */,
+				CE9065381FA2747200870F44 /* CalculatorViewController.swift in Sources */,
 				CE2A67611FA2700D0084CF99 /* Calculator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
