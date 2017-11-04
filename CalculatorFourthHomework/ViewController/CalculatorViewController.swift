@@ -22,8 +22,6 @@ class CalcViewControllerView: UIView {
     
     var problemLabel = UILabel()
     
-    var calculator = Calculator()
-    
     var operationButtons:[UIButton]
     
     override var frame: CGRect {
@@ -40,15 +38,14 @@ class CalcViewControllerView: UIView {
     }
     
     override init(frame: CGRect) {
-        super.init(frame: frame)
         operationButtons = [plusButton, subtractButton, multiplyButton, divideButton]
+        super.init(frame: frame)
         addSubview(calculatorGreetingLabel)
         addSubview(firstOperandTextField)
         addSubview(secondOperandTextField)
         
-        for button in operationButtons! {
+        for button in operationButtons {
             button.titleLabel?.font = UIFont.systemFont(ofSize: 25)
-            button.addTarget(self, action: #selector(operationButtonAction), for: .touchDown)
             addSubview(button)
         }
         
@@ -69,40 +66,7 @@ class CalcViewControllerView: UIView {
         addSubview(problemLabel)
     }
     
-    @objc func operationButtonAction(sender: UIButton!) {
-        var result: String
-        let firstOperand = Int(firstOperandTextField.text!)
-        let secondOperand = Int(secondOperandTextField.text!)
-        
-        print("\(firstOperand) \(secondOperand)")
-        guard firstOperand != nil && secondOperand != nil else {
-            problemLabel.text = "Please, fill text fields with proper numbers"
-            return
-        }
-        
-        secondOperandTextField.text = ""
-        switch sender.titleLabel?.text {
-        case "+"?:
-            result = String(calculator.add(a: firstOperand!, b: secondOperand!))
-        case "-"?:
-            result = String(calculator.subtract(a: firstOperand!, b: secondOperand!))
-        case "*"?:
-            result = String(calculator.multiply(a: firstOperand!, b: secondOperand!))
-        case "/"?:
-            do {
-                try result = String(calculator.divide(a: firstOperand!, b: secondOperand!))
-            } catch {
-                problemLabel.text = "DO NOT divide by zero"
-                return
-            }
-            
-        default:
-            problemLabel.text = "Operation was not found. Try again"
-            return
-        }
-        
-        firstOperandTextField.text = String(result)
-    }
+    
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -119,6 +83,9 @@ class CalculatorViewController: UIViewController {
     
     override func loadView() {
         view =  CalcViewControllerView()
+        for button in calcControlerView.operationButtons {
+            button.addTarget(self, action: #selector(operationButtonAction), for: .touchDown)
+        }
     }
 
     override func viewDidLoad() {
@@ -130,6 +97,43 @@ class CalculatorViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @objc func operationButtonAction(sender: UIButton!) {
+        var result: String
+        let firstOperand = Int(calcControlerView.firstOperandTextField.text!)
+        let secondOperand = Int(calcControlerView.secondOperandTextField.text!)
+        let problemLabel = calcControlerView.problemLabel
+        
+        print("\(firstOperand) \(secondOperand)")
+        guard firstOperand != nil && secondOperand != nil else {
+            problemLabel.text = "Please, fill text fields with proper numbers"
+            return
+        }
+        
+        var calculatorFunction: (Int, Int) throws -> Int
+        
+        calcControlerView.secondOperandTextField.text = ""
+        switch sender.titleLabel?.text {
+        case "+"?:
+            calculatorFunction = calculator.add
+        case "-"?:
+            calculatorFunction = calculator.divide
+        case "*"?:
+            calculatorFunction = calculator.multiply
+        case "/"?:
+            calculatorFunction = calculator.divide
+        default:
+            problemLabel.text = "Operation was not found. Try again"
+            return
+        }
+        do {
+            try result = String(calculatorFunction(firstOperand!, secondOperand!))
+        } catch {
+            problemLabel.text = "DO NOT divide by zero"
+            return
+        }        
+        calcControlerView.firstOperandTextField.text = String(result)
     }
 
 
