@@ -98,8 +98,8 @@ class CalculatorViewController: UIViewController {
     
     @objc func operationButtonAction(sender: UIButton!) {
         var result: String
-        let firstOperand = Int(calcControlerView.firstOperandTextField.text!)
-        let secondOperand = Int(calcControlerView.secondOperandTextField.text!)
+        let firstOperand = Double(calcControlerView.firstOperandTextField.text!)
+        let secondOperand = Double(calcControlerView.secondOperandTextField.text!)
         let problemLabel = calcControlerView.problemLabel
         
         guard firstOperand != nil && secondOperand != nil else {
@@ -107,7 +107,7 @@ class CalculatorViewController: UIViewController {
             return
         }
         
-        var calculationFunction: (Int, Int) throws -> Int
+        var calculationFunction: (Double, Double) throws ->Double
         
         calcControlerView.secondOperandTextField.text = ""
         switch sender.titleLabel?.text {

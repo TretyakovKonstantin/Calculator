@@ -9,26 +9,26 @@
 import Foundation
 
 class Calculator {
-    func add(a: Int, b: Int) -> Int {
+    func add(a: Double, b: Double) -> Double {
         return a + b
     }
     
-    func subtract(a: Int, b: Int) -> Int {
+    func subtract(a: Double, b: Double) -> Double {
         return a - b
     }
     
-    func multiply(a: Int, b: Int) -> Int {
+    func multiply(a: Double, b: Double) -> Double {
         return a * b
     }
     
-    func divide(a: Int, b: Int) throws -> Int {
+    func divide(a: Double, b: Double) throws -> Double {
         guard b != 0 else {
             throw NSError()
         }
         return a / b
     }
     
-    func operationStringRepresentation(a: Int, b: Int, operation: String, result: String) -> String{
+    func operationStringRepresentation(a: Double, b: Double, operation: String, result: String) -> String{
         return "\(a) " + operation + " \(b) = " + result
     }
     
