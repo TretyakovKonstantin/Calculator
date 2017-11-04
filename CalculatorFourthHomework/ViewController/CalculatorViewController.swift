@@ -114,7 +114,7 @@ class CalculatorViewController: UIViewController {
         case "+"?:
             calculationFunction = calculator.add
         case "-"?:
-            calculationFunction = calculator.divide
+            calculationFunction = calculator.subtract
         case "*"?:
             calculationFunction = calculator.multiply
         case "/"?:
