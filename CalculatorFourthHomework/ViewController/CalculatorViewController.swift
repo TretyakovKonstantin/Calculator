@@ -24,7 +24,7 @@ class CalcViewControllerView: UIView {
     
     var calculator = Calculator()
     
-    var operationButtons:[UIButton]?
+    var operationButtons:[UIButton]
     
     override var frame: CGRect {
         didSet {
@@ -47,16 +47,22 @@ class CalcViewControllerView: UIView {
         addSubview(secondOperandTextField)
         
         for button in operationButtons! {
-            button.backgroundColor = .blue
             button.titleLabel?.font = UIFont.systemFont(ofSize: 25)
             button.addTarget(self, action: #selector(operationButtonAction), for: .touchDown)
             addSubview(button)
         }
         
         plusButton.setTitle("+", for: .normal)
+        plusButton.backgroundColor = .red
+        
         subtractButton.setTitle("-", for: .normal)
+        subtractButton.backgroundColor = .blue
+        
         multiplyButton.setTitle("*", for: .normal)
+        multiplyButton.backgroundColor = .brown
+        
         divideButton.setTitle("/", for: .normal)
+        divideButton.backgroundColor = .green
         
         firstOperandTextField.borderStyle = UITextBorderStyle.roundedRect
         secondOperandTextField.borderStyle = UITextBorderStyle.roundedRect
@@ -74,6 +80,7 @@ class CalcViewControllerView: UIView {
             return
         }
         
+        secondOperandTextField.text = ""
         switch sender.titleLabel?.text {
         case "+"?:
             result = String(calculator.add(a: firstOperand!, b: secondOperand!))
@@ -86,7 +93,6 @@ class CalcViewControllerView: UIView {
                 try result = String(calculator.divide(a: firstOperand!, b: secondOperand!))
             } catch {
                 problemLabel.text = "DO NOT divide by zero"
-                secondOperandTextField.text = ""
                 return
             }
             
@@ -96,7 +102,6 @@ class CalcViewControllerView: UIView {
         }
         
         firstOperandTextField.text = String(result)
-        secondOperandTextField.text = ""
     }
 
     required init?(coder aDecoder: NSCoder) {
