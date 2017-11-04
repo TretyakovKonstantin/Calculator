@@ -28,8 +28,8 @@ class Calculator {
         return a / b
     }
     
-    func operationStringRepresentation(a: Int, b: Int, operation: stringOperations) -> String{
-        return "\(a) " + operation.rawValue + "\(b)"
+    func operationStringRepresentation(a: Int, b: Int, operation: String, result: String) -> String{
+        return "\(a) " + operation + " \(b) = " + result
     }
     
     enum stringOperations: String {
