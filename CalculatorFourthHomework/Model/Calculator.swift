@@ -9,32 +9,27 @@
 import Foundation
 
 class Calculator {
-    func add(a: Double, b: Double) -> Double {
-        return a + b
-    }
-    
-    func subtract(a: Double, b: Double) -> Double {
-        return a - b
-    }
-    
-    func multiply(a: Double, b: Double) -> Double {
-        return a * b
-    }
-    
-    func divide(a: Double, b: Double) throws -> Double {
-        guard b != 0 else {
-            throw NSError()
+   
+    static func calculate(a: Double, b: Double, operation: stringOperations) -> Double {
+        switch operation {
+            case .add:
+                return a + b
+            case .subtract:
+                return a - b
+            case .multiply:
+                return a * b
+            case .divide:
+                return a / b
         }
-        return a / b
     }
     
-    func operationStringRepresentation(a: Double, b: Double, operation: String, result: String) -> String{
-        return "\(a) " + operation + " \(b) = " + result
+    static func operationStringRepresentation(a: Double, b: Double, operation: stringOperations, result: String) -> String{
+        return "\(a) " + operation.rawValue + " \(b) = " + result
     }
     
     enum stringOperations: String {
         case add = " + "
-        case substract = " - "
+        case subtract = " - "
         case multiply = " * "
         case divide = " / "
     }
