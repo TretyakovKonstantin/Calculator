@@ -79,7 +79,6 @@ class CalcViewControllerView: UIView {
 }
 
 class CalculatorViewController: UIViewController {
-    var calculator = Calculator()
     var calcControllerView: CalcViewControllerView {
         get {
             return view as! CalcViewControllerView
@@ -98,11 +97,6 @@ class CalculatorViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .lightGray
         calcControllerView.calculatorGreetingLabel.text = "This is my calculator"
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @objc func addButtonAction(sender: UIButton!) {
@@ -125,7 +119,6 @@ class CalculatorViewController: UIViewController {
         calculateAndFillViewFields(operation: .divide)
     }
     
-    
     func calculateAndFillViewFields(operation: Calculator.stringOperations) {
         let firstOperand = Double(calcControllerView.firstOperandTextField.text!)
         let secondOperand = Double(calcControllerView.secondOperandTextField.text!)
@@ -144,6 +137,4 @@ class CalculatorViewController: UIViewController {
         }
         return true
     }
-
-
 }
